@@ -80,6 +80,8 @@
 			let composer;
 			let pixelPass, params;
 
+			let brightness = 0
+
 			const ENTIRE_SCENE = 0, BLOOM_SCENE = 1;
 
 			//const bloomLayer = new THREE.Layers();
@@ -120,6 +122,7 @@
 			/*-----------------------TURNING OFF BLOOM FOR PERFORMANCE-----------------------*/
 
 			/*OBJECT ARRAYS---------------------------------------------------------------*/
+			var eyes = [];
 			var snowGeo;
 			var snowAr = [];
 			/*---------------------------------------------------------------OBJECT ARRAYS*/
@@ -279,7 +282,7 @@
 				mouse.y = -(event.clientY / window.innerHeight) * 2 + 1;
 				
 				MasterSkull.rotation.order = 'ZYX';
-				MasterSkull.rotation.y = (mouse.x/5) + Math.PI/2;
+				MasterSkull.rotation.y = (mouse.x/4) + Math.PI/2;
 				MasterSkull.rotation.z = (mouse.y/4);
 
 				var x0 = 20;
@@ -304,6 +307,14 @@
 
 			//GAME LOOP-----------------------------------------------------------------
 			function animate() {
+
+				if(eyes.length === 2){
+					var time = new Date().getTime();
+					for(let i = 0; i <= 1; i++){
+						eyes[i].intensity = 0.5*Math.cos(time/2000) + 0.1;
+					}
+				}
+
 
 				snowFall();
 				camera.position.lerp(cameraTarget, 0.1);
@@ -400,11 +411,11 @@
 			}
 
 			function genEye(zVal){
-				const light = new THREE.PointLight( 0xffffff, 0.3, 2 );
+				const light = new THREE.PointLight( 0xff0000, 0.5*Math.cos(brightness), 4 );
 				light.position.set( 1.7, 0.3, zVal );
 				scene.add( light );
+				eyes.push(light);
 
-				//MasterSkull.attach( light );
 
 				// const eyeGeo = new THREE.SphereGeometry(0.2, 4);
 				// const color = new THREE.Color();
