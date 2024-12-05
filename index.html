@@ -164,39 +164,39 @@
 				}
 			);
 			
-			loader.load(
-				// resource URL
-				'models/gltf/GYS_Clothes.obj',
-				// called when resource is loaded
-				function ( object ) {
-					object.userData.name = "GYS_Clothes";
+			// loader.load(
+			// 	// resource URL
+			// 	'models/gltf/GYS_Clothes.obj',
+			// 	// called when resource is loaded
+			// 	function ( object ) {
+			// 		object.userData.name = "GYS_Clothes";
 					
-					GYS_Clothes = object;
-					GYS_Clothes.rotation.order = 'ZYX';
-					GYS_Clothes.rotation.y = Math.PI/2;
-					GYS_Clothes.rotation.x = Math.PI/2;
-					GYS_Clothes.scale.set(0.8, 0.8, 0.8);
-					GYS_Clothes.position.y = -3.5;
+			// 		GYS_Clothes = object;
+			// 		GYS_Clothes.rotation.order = 'ZYX';
+			// 		GYS_Clothes.rotation.y = Math.PI/2;
+			// 		GYS_Clothes.rotation.x = Math.PI/2;
+			// 		GYS_Clothes.scale.set(0.8, 0.8, 0.8);
+			// 		GYS_Clothes.position.y = -3.5;
 
-					const material = new THREE.MeshBasicMaterial( { color: 'black' } );
-					GYS_Clothes.material = material;
+			// 		const material = new THREE.MeshBasicMaterial( { color: 'black' } );
+			// 		GYS_Clothes.material = material;
 
-					scene.add( object );
+			// 		scene.add( object );
 
-				},
-				// called when loading is in progresses
-				function ( xhr ) {
+			// 	},
+			// 	// called when loading is in progresses
+			// 	function ( xhr ) {
 
-					console.log( ( xhr.loaded / xhr.total * 100 ) + '% loaded' );
+			// 		console.log( ( xhr.loaded / xhr.total * 100 ) + '% loaded' );
 
-				},
-				// called when loading has errors
-				function ( error ) {
+			// 	},
+			// 	// called when loading has errors
+			// 	function ( error ) {
 
-					console.log( 'An error happened' );
+			// 		console.log( 'An error happened' );
 
-				}
-			);
+			// 	}
+			// );
 			//---------------------------------------------------------------GLTF LOADER
 
 			const finalPass = new ShaderPass(
